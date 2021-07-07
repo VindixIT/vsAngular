@@ -1,0 +1,46 @@
+<h2>Lista de Pilares</h2>
+<table class="table table-striped">
+  <thead>
+    
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Descricao</th>
+    <th>Referencia</th>
+    <th>Id Autor</th>
+    <th>Criado Em</th>
+    <th>Status</th>
+    <th>Acoes</th>
+
+  </thead>
+  <tbody>
+    <tr *ngFor = "let pilar of pilares"> 
+    	
+    	<td> {{pilar.idPilar}}</td>
+    	<td> {{pilar.nome}}</td>
+    	<td> {{pilar.descricao}}</td>
+    	<td> {{pilar.referencia}}</td>
+    	<td> {{pilar.idAutor}}</td>
+    	<td> {{pilar.criadoEm}}</td>
+    	<td> {{pilar.idStatus}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor] = "commands">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #commands = "matMenu">
+            <button mat-menu-item (click) = "updatePilar(pilar.idPilar)" >Atualizar
+              <mat-icon>update</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click) ="deletePilar(pilar.idPilar)">Apagar
+              <mat-icon>delete</mat-icon>
+            </button></mat-menu>
+      </td>
+
+    	<!-- <button mat-menu-item (click) = "openModal(pilar.id)" >
+        <button (click) = "updatePilar(pilar.id)" class="btn btn-info">Atualizar</button> "updatePilar(pilar.idPilar)"
+    		<button (click) = "deleteUsuario(usuario.id)" class="btn btn-danger" style= "margin-left:10px">Deletar</button>
+    		<button (click) = "usuarioDetails(usuario.id)" class="btn btn-warning" style= "margin-left:10px">Visualizar</button>
+    	</td> -->    		
+    </tr>
+  </tbody>
+</table>

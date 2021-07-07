@@ -1,0 +1,48 @@
+<h2>Lista de Ciclos</h2>
+<table class="table table-striped">
+  <thead>
+    
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Descricao</th>
+    <th>Referencia</th>
+    <th>Id Autor</th>
+    <th>Criado Em</th>
+    <th>Id Versao Origem</th>
+    <th>Status</th>
+    <th>Acoes</th>
+
+  </thead>
+  <tbody>
+    <tr *ngFor = "let ciclo of ciclos"> 
+    	
+    	<td> {{ciclo.idCiclo}}</td>
+    	<td> {{ciclo.nome}}</td>
+    	<td> {{ciclo.descricao}}</td>
+    	<td> {{ciclo.referencia}}</td>
+    	<td> {{ciclo.idAutor}}</td>
+    	<td> {{ciclo.criadoEm}}</td>
+    	<td> {{ciclo.idVersaoOrigem}}</td>
+    	<td> {{ciclo.idStatus}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor] = "commands">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #commands = "matMenu">
+            <button mat-menu-item (click) = "updateCiclo(ciclo.idCiclo)" >Atualizar
+              <mat-icon>update</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click) ="deleteCiclo(ciclo.idCiclo)">Apagar
+              <mat-icon>delete</mat-icon>
+            </button></mat-menu>
+      </td>
+
+    	<!-- <button mat-menu-item (click) = "openModal(ciclo.id)" >
+        <button (click) = "updateCiclo(ciclo.id)" class="btn btn-info">Atualizar</button> "updateCiclo(ciclo.idCiclo)"
+    		<button (click) = "deleteUsuario(usuario.id)" class="btn btn-danger" style= "margin-left:10px">Deletar</button>
+    		<button (click) = "usuarioDetails(usuario.id)" class="btn btn-warning" style= "margin-left:10px">Visualizar</button>
+    	</td> -->    		
+    </tr>
+  </tbody>
+</table>

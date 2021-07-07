@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/auth0-js": "^9.14.4"
+  }
+}

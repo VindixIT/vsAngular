@@ -1,0 +1,48 @@
+<h2>Lista de Elementos</h2>
+<table class="table table-striped">
+  <thead>
+    
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Descricao</th>
+    <th>Referencia</th>
+    <th>Peso</th>
+    <th>Id Autor</th>
+    <th>Criado Em</th>
+    <th>Status</th>
+    <th>Acoes</th>
+
+  </thead>
+  <tbody>
+    <tr *ngFor = "let elemento of elementos"> 
+    	
+    	<td> {{elemento.idElemento}}</td>
+    	<td> {{elemento.nome}}</td>
+    	<td> {{elemento.descricao}}</td>
+    	<td> {{elemento.referencia}}</td>    
+    	<td> {{elemento.peso}}</td>    
+    	<td> {{elemento.idAutor}}</td>
+    	<td> {{elemento.criadoEm}}</td>
+    	<td> {{elemento.idStatus}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor] = "commands">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #commands = "matMenu">
+            <button mat-menu-item (click) = "updateElemento(elemento.idElemento)" >Atualizar
+              <mat-icon>update</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click) ="deleteElemento(elemento.idElemento)">Apagar
+              <mat-icon>delete</mat-icon>
+            </button></mat-menu>
+      </td>
+
+    	<!-- <button mat-menu-item (click) = "openModal(elemento.id)" >
+        <button (click) = "updateElemento(elemento.id)" class="btn btn-info">Atualizar</button> "updateElemento(elemento.idElemento)"
+    		<button (click) = "deleteUsuario(usuario.id)" class="btn btn-danger" style= "margin-left:10px">Deletar</button>
+    		<button (click) = "usuarioDetails(usuario.id)" class="btn btn-warning" style= "margin-left:10px">Visualizar</button>
+    	</td> -->    		
+    </tr>
+  </tbody>
+</table>

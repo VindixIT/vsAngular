@@ -1,0 +1,176 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>    
+    <button mat-icon-button>
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button> 
+    <h1>{{title}}</h1>  
+      
+    <span class="menu-spacer"></span>
+          <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
+            <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+                    <!-- Authorized only -->
+                    <li class="nav-item" *ngIf="isAuthorized">
+                      <button id="button-logout" mat-button routerLink="/welcome">Log Out</button>
+                    </li> 
+            </ul>
+          </div>  
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav #sidenav mode="push" class="app-sidenav">
+  <mat-nav-list>
+        <!---->
+      <span class="toolbar-filler"></span>
+      <button mat-icon-button> <mat-icon (click)="sidenav.toggle()"
+        aria-label="Menu" class="material-icons">close</mat-icon>
+      </button>
+      <mat-divider></mat-divider>  
+      
+      <button mat-menu-item ="about"(click)="sidenav.toggle()">Sobre o Virtus</button>
+
+      <li class="nav-item" *ngIf="isAdmin">
+      <button mat-button [matMenuTriggerFor] = "Controler">Configuracao</button>
+        <mat-menu #Controler = "matMenu">       
+
+          <button mat-menu-item [matMenuTriggerFor]="ciclo">Ciclos</button>
+          <button mat-menu-item [matMenuTriggerFor]="componente">Componentes</button>
+          <button mat-menu-item [matMenuTriggerFor]="pilar">Pilares</button>          
+          <button mat-menu-item [matMenuTriggerFor]="elemento">Elementos</button>
+          <button mat-menu-item [matMenuTriggerFor]="tipoNota">Tipos de Nota</button>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor] = "Controler2">Administracao</button>
+        <mat-menu #Controler2 = "matMenu">         
+         <!--  <button mat-menu-item [matMenuTriggerFor]="usuario">Usuarios</button> -->
+        </mat-menu>
+      </li>
+
+        <mat-menu #ciclo="matMenu">
+          <button mat-menu-item routerLink="/ciclo-list"  (click)="sidenav.toggle()">Listar Ciclos</button>  <!--Path Criado em app-routing-->
+          <button mat-menu-item routerLink="/create-ciclo"  (click)="sidenav.toggle()">Criar Ciclo</button>
+        </mat-menu>
+        <mat-menu #componente="matMenu">
+          <button mat-menu-item routerLink="/componente-list"  (click)="sidenav.toggle()">Listar Componentes</button> 
+          <button mat-menu-item routerLink="/create-componente"  (click)="sidenav.toggle()">Criar Componentes</button>
+        </mat-menu>
+
+        <mat-menu #pilar="matMenu">
+          <button mat-menu-item routerLink="/pilar-list"  (click)="sidenav.toggle()">Listar Pilares</button> 
+          <button mat-menu-item routerLink="/create-pilar"  (click)="sidenav.toggle()">Criar Pilares</button>
+        </mat-menu>
+
+        <mat-menu #elemento="matMenu">
+          <button mat-menu-item routerLink="/elemento-list"  (click)="sidenav.toggle()">Listar Elementos</button> 
+          <button mat-menu-item routerLink="/create-elemento"  (click)="sidenav.toggle()">Criar Elementos</button>
+        </mat-menu>
+
+        <mat-menu #tipoNota="matMenu">
+          <button mat-menu-item routerLink="/tipoNota-list"  (click)="sidenav.toggle()">Listar Tipo Nota</button> 
+          <button mat-menu-item routerLink="/create-tipoNota"  (click)="sidenav.toggle()">Criar Tipo Nota</button>
+        </mat-menu>
+  </mat-nav-list>     
+</mat-sidenav>
+
+<!--separador topo/lateral-->
+<mat-sidenav-container >
+  <mat-sidenav-content>
+    <mat-toolbar color = "primary">
+
+    <!---------Menu direito alto pagina exemplos------------------>
+     <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+          <div><span style="font-size: 12px;">Sistema de informacao da Previc</span></div>
+
+
+        <li> 
+            <a
+              routerLink="/welcome">
+              <button mat-mini-fab color="basic" aria-label="Bem-vindos">
+                <mat-icon>home</mat-icon>
+              </button>
+
+            </a>
+        </li>
+      <!-- Menu test -->
+                  <!-- Authorized only -->
+        <li class="nav-item" *ngIf="isAuthorized">
+          <a class="nav-link" [routerLink]="['profile']">Usuario</a>
+        </li>
+
+        <!-- Admin only -->
+        <li class="nav-item" *ngIf="isAdmin">
+          <!--<a class="nav-link" [routerLink]="['admin', 'configuracao']">Configuracao</a> -->
+        </li>
+
+ 
+      <span class="navbar-text">
+        <span class="badge badge-warning" *ngIf="isAuthorized">Authorized</span>
+        <span class="badge badge-danger" *ngIf="isAdmin">Admin</span>
+        <span class="badge badge-danger" *ngIf="isSupervisor">Supervisor</span>
+        <span class="badge badge-danger" *ngIf="isChefe">Chefe</span>
+
+      </span>
+        </ul>
+     </div>
+    </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<!--  
+          
+        
+    
+  
+
+   <a  mat-list-item
+      *ngIf="auth.isAuthenticated()"
+      (click)="auth.logout()" type="button">
+      <mat-icon class="icon">input</mat-icon>
+      <span class="label">LogOut</span>
+
+           <div fxHide.gt-xs>
+       <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    </a>
+
+  
+  
+  <div>
+      <a mat-button
+        *ngIf="auth.isAuthenticated()"
+        routerLink="/link1">
+        <mat-icon class="icon"></mat-icon>
+        <span class="label">link1</span>
+      </a>
+      <a mat-button
+        *ngIf="auth.isAuthenticated()"
+        routerLink="/link2">
+        <mat-icon class="icon"></mat-icon>
+        <span class="label">link2</span>
+      </a>
+      <a mat-button
+        *ngIf="auth.isAuthenticated()"
+        routerLink="/link3">
+        <mat-icon class="icon"></mat-icon>
+        <span class="label">link3</span>
+      </a>
+    </div>  --> 
+    <!--    <a mat-list-item
+        *ngIf="!auth.isAuthenticated()"
+        (click)="auth.login()">
+      <mat-icon class="icon">input</mat-icon>
+      <span class="label">Conectar</span>
+    </a>
+    <a mat-list-item
+        *ngIf="auth.isAuthenticated()"
+        routerLink="/">
+      <mat-icon class="icon">home</mat-icon>
+        <span class="label">Home</span>
+    </a> -->
+    <!-- MODAL -->

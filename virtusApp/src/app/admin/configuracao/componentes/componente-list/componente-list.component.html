@@ -1,0 +1,46 @@
+<h2>Lista de Componentes</h2>
+<table class="table table-striped">
+  <thead>
+    
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Descricao</th>
+    <th>Referencia</th>
+    <th>Id Autor</th>
+    <th>Criado Em</th>
+    <th>Id Status</th>
+    <th>Acoes</th>
+
+  </thead>
+  <tbody>
+    <tr *ngFor = "let componente of componentes"> 
+    	
+    	<td> {{componente.idComponente}}</td>
+    	<td> {{componente.nome}}</td>
+    	<td> {{componente.descricao}}</td>
+    	<td> {{componente.referencia}}</td>
+    	<td> {{componente.idAutor}}</td>
+    	<td> {{componente.criadoEm}}</td>
+    	<td> {{componente.idStatus}}</td>
+      <td>
+        <button mat-icon-button [matMenuTriggerFor] = "commands">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #commands = "matMenu">
+            <button mat-menu-item (click) = "updateComponente(componente.idComponente)" >Atualizar
+              <mat-icon>update</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click) ="deleteComponente(componente.idComponente)">Apagar
+              <mat-icon>delete</mat-icon>
+            </button></mat-menu>
+      </td>
+
+    	<!-- <button mat-menu-item (click) = "openModal(componente.id)" >
+        <button (click) = "updateComponente(componente.id)" class="btn btn-info">Atualizar</button> "updateComponente(componente.idComponente)"
+    		<button (click) = "deleteUsuario(usuario.id)" class="btn btn-danger" style= "margin-left:10px">Deletar</button>
+    		<button (click) = "usuarioDetails(usuario.id)" class="btn btn-warning" style= "margin-left:10px">Visualizar</button>
+    	</td> -->    		
+    </tr>
+  </tbody>
+</table>
