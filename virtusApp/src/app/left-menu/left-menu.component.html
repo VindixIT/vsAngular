@@ -1,0 +1,85 @@
+<mat-nav-list *ngIf="authService.isAuthenticated">
+    
+    <img class="avatar mat-elevation-z8" src="/assets/images/simpson.jpg" />
+    <h4 class="name">Aria</h4>
+    <p class="designation">Supervisor</p>
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
+        <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+    </a>
+    <a mat-list-item routerLink="/about" (click)="onSidenavClose()">
+        <mat-icon>info</mat-icon> <span class="nav-caption">About</span>   
+    </a>
+
+<!--teste config-->
+<a mat-list-item [matMenuTriggerFor]="configuracao">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+    Configuracao
+</a>
+
+<mat-menu #configuracao="matMenu">    
+  <button mat-menu-item [matMenuTriggerFor]="ciclo">
+    <mat-icon></mat-icon>
+    <a matline>Ciclos</a>
+</button>  
+<button mat-menu-item [matMenuTriggerFor]="componente">
+    <mat-icon></mat-icon>
+    <a matline>Componentes</a>
+</button>
+<button mat-menu-item [matMenuTriggerFor]="pilar">
+    <mat-icon></mat-icon>
+    <a matline>Pilar</a>
+</button>  
+<button mat-menu-item [matMenuTriggerFor]="elemento">
+    <mat-icon></mat-icon>
+    <a matline>Elemento</a>
+</button>  
+<button mat-menu-item [matMenuTriggerFor]="tipoNota">
+    <mat-icon></mat-icon>
+    <a matline>Tipo Nota</a>
+</button>  
+
+</mat-menu>
+<mat-menu #ciclo="matMenu">
+    <button mat-menu-item routerLink="/ciclo-list" (click)="onSidenavClose()">Listar Ciclos</button> 
+    <button mat-menu-item routerLink="/create-ciclo" (click)="onSidenavClose()">Criar Ciclo</button>
+</mat-menu>
+<mat-menu #componente="matMenu">
+    <button mat-menu-item routerLink="/componente-list" (click)="onSidenavClose()">Listar Componentes</button> 
+    <button mat-menu-item routerLink="/create-componente" (click)="onSidenavClose()">Criar Componente</button>
+</mat-menu>
+<mat-menu #pilar="matMenu">
+    <button mat-menu-item routerLink="/pilar-list" (click)="onSidenavClose()">Listar Pilares</button> 
+    <button mat-menu-item routerLink="/create-pilar" (click)="onSidenavClose()">Criar Pilar</button>
+</mat-menu>
+<mat-menu #elemento="matMenu">
+    <button mat-menu-item routerLink="/elemento-list" (click)="onSidenavClose()">Listar Elementos</button> 
+    <button mat-menu-item routerLink="/create-elemento" (click)="onSidenavClose()">Criar Elemento</button>
+</mat-menu>
+<mat-menu #tipoNota="matMenu">
+    <button mat-menu-item routerLink="/tipoNota-list" (click)="onSidenavClose()">Listar Tipo Notas</button> 
+    <button mat-menu-item routerLink="/create-tipoNota" (click)="onSidenavClose()">Criar Tipo Nota</button>
+</mat-menu>
+<mat-divider></mat-divider>
+    
+<a mat-list-item [matMenuTriggerFor]="admin">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+    Administracao
+</a>
+<mat-menu #admin="matMenu">    
+    <button mat-menu-item [matMenuTriggerFor]="ciclo">
+      <mat-icon></mat-icon>
+      <a matline>Usuarios</a>
+  </button> 
+</mat-menu> 
+    <!--fim teste de menu-->
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLink="/about" (click)="onSidenavClose()">
+        <mat-icon>help</mat-icon> <span class="nav-caption">Entre em contato</span>   
+    </a>
+    <button mat-menu-item (click)="logout()" class="nav-link">
+        <mat-icon >exit_to_app</mat-icon>
+          Sair do Sistema    
+    </button>
+
+</mat-nav-list>

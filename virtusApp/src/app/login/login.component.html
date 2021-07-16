@@ -1,15 +1,40 @@
-<div style="text-align:center">
-    <!-- Login test -->
-  <div id="login-form" class="w3-modal">
-    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
-        <div class="w3-center"><br>
-            <!--<span onclick="document.getElementById('login-form').style.display='none'"-->
-                  <!--class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"-->
-                  <!--title="Close Modal">&times;</span>-->
-            <img src="assets/images/no-avatar.png" alt="Avatar" style="width:150px" class="w3-circle w3-margin-top">
+<div class="login-wrapper">
+    <div class= "card">
+        <div class= "card-body">        
+            <form class="form-signin" (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm">                
+                <img class="mb-4" src="assets/images/no-avatar.png" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Acesso ao Portal Virtus</h1>
+
+                <label for="inputEmail" class="sr-only">Endereco de email</label>
+                <input type="email" id="inputEmail" name="email" class="form-control"
+                placeholder="Email address" required autofocus ngModel>
+
+                <label for="inputPassword" class="sr-only">Senha</label>
+                <input type="password" id="inputPassword" name="password" class="form-control"
+                placeholder="Password" required ngModel>
+                <div class="checkbox mb-3">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <div class="alert alert-danger" role="alert" *ngIf="isFormInvalid">
+                    Por favor preencher os campos
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="areCredentialsInvalid">
+                    Usuario/Password nao validos
+                </div>
+            </form>
         </div>
-        <br><br>
-        <p>
+    </div>
+</div>
+
+
+
+
+    <a href="/signUpUser" class="w3-btn w3-teal"> Registrar-se </a>
+   <!--         <span class="w3-right w3-padding w3-hide-small"> Esqueceu a <a href="/recoverPwd">senha?</a></span> -->
+
+ 
+  
+<!--        <p>
         <form class="w3-container" action="/login" method="post">
             <div class="w3-section">
                 <label><b> Login </b></label>
@@ -35,20 +60,10 @@
                 <button 
                     class="btn btn-outline-warning" 
                     (click)="login(Role.Chefe)">Chefe
-                </button></div>
-  
+               </button></div>  
         </form>
-  
-        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-            <!--<button onclick="document.getElementById('login-form').style.display='none'" type="button" class="w3-btn w3-red">-->
-                <!--Cancel-->
-            <!--</button>-->
-            <a href="/signUpUser" class="w3-btn w3-teal"> Registrar-se </a>
-   <!--         <span class="w3-right w3-padding w3-hide-small"> Esqueceu a <a href="/recoverPwd">senha?</a></span> -->
-        </div>
     </div>
-  </div>
-  <!--Fim Login Test -->  
-  
-  </div>
-  
+    </div>
+  </div></div>
+    
+    -->

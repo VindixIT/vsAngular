@@ -2,22 +2,50 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Role } from '../models/role';
 import { Router } from '@angular/router';
-//import * as auth0 from 'auth0-js';
+import { FlexAlignStyleBuilder } from '@angular/flex-layout';
+
 
 @Injectable()
 export class AuthService {
-  constructor(public router: Router) {}
-    private user!: User;
-    isAuthorized() {
-        return !!this.user;
+
+  private readonly fakeUser = new User('aria@gmail.com','1234'); 
+  isAuthenticated = false;
+ 
+
+
+  constructor(private router: Router) {}
+  //private user!: User;
+  //isAuthorized() {
+    //    return !!this.user;
+    //}
+  authenticate(user:User):boolean{
+    if(this.checkCredentials(user)){
+      this.isAuthenticated = true;
+      this.router.navigate(['/welcome'])
+      return true;
     }
-    hasRole(role: Role) {
-        return this.isAuthorized() && this.user.role === role;
+    this.isAuthenticated = false;
+    return false;
     }
-    login(role: Role) {
-      this.user = { role: role };
+    private checkCredentials(user:User):boolean{
+      return this.checkEmail(user.getEmail()) && this.checkPassword(user.getPassword());
     }
+
+    private checkEmail(email:String):boolean{
+      return email === this.fakeUser.getEmail();
+    }
+    private checkPassword(password:String):boolean{
+      return password === this.fakeUser.getPassword();
+    }
+
+    //hasRole(role: Role) {
+      //  return this.isAuthorized() && this.user.role === role;
+    //}
+    //login(role: Role) {
+      //this.user = { role: role };
+    //}
     logout() {
+      this.isAuthenticated = false;
       this.router.navigate(['/login']);
       
     }

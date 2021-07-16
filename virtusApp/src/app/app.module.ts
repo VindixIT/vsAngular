@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRouters} from './app.routes';
 import { PrevicComponent } from '../app/previc/previc.component';
 import { AuthService} from './services/auth.service';
+import { SidenavService } from './services/sidenav.services';
 import { PrevicService} from './previc/previc.service';
 import { FormsModule } from '@angular/forms'
 import { MatMenuModule } from '@angular/material/menu';
@@ -18,6 +19,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routing.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 //Ciclo
 import { CicloListComponent } from './admin/configuracao/ciclos/ciclo-list/ciclo-list.component';
 import { CreateCicloComponent } from './admin/configuracao/ciclos/create-ciclo/create-ciclo.component'
@@ -41,6 +46,13 @@ import { CreateTipoNotaComponent } from './admin/configuracao/tiposNotas/create-
 import { UpdateTipoNotaComponent } from './admin/configuracao/tiposNotas/update-tipoNota/update-tipoNota.component';
 
 import { AboutComponent } from './about/about/about.component';
+
+import { ReactiveFormsModule} from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { CdkTableModule} from '@angular/cdk/table';
+import { LeftMenuComponent } from './left-menu/left-menu.component';
+import { HeaderComponent } from './header/header.component';
+
 
 
 @NgModule({
@@ -71,9 +83,9 @@ import { AboutComponent } from './about/about/about.component';
     UpdateTipoNotaComponent,
 
     AboutComponent,
-
-    
-    
+    LeftMenuComponent,
+    HeaderComponent,
+        
     
   ],
   imports: [
@@ -89,9 +101,16 @@ import { AboutComponent } from './about/about/about.component';
     MatMenuModule,
     MatButtonModule,
     MatDialogModule,
+    MatIconModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    CdkTableModule,
+    MatSidenavModule,
+
     
   ],
-  providers: [PrevicService, AuthService],
+  providers: [PrevicService, AuthService, SidenavService],
   bootstrap: [AppComponent],
   entryComponents: [
     UpdateCicloComponent, 

@@ -27,28 +27,30 @@ import { UpdateTipoNotaComponent } from './admin/configuracao/tiposNotas/update-
 
 //import { ConfiguracaoComponent } from './admin/configuracao/configuracao.component'
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { CommonModule } from '@angular/common';
 
 
 export const routes: Routes = [
-  {path: 'welcome', component: WelcomeComponent},
+  {path: 'welcome', component: WelcomeComponent, canActivate:[AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'about', component: AboutComponent},
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'ciclo-list', component: CicloListComponent},
-  {path: 'create-ciclo', component: CreateCicloComponent},
-  {path: 'update-ciclo/:id', component: UpdateCicloComponent},
-  {path: 'componente-list', component: ComponenteListComponent},
-  {path: 'create-componente', component: CreateComponenteComponent},
-  {path: 'update-componente/:id', component: UpdateComponenteComponent},
-  {path: 'pilar-list', component: PilarListComponent},
-  {path: 'create-pilar', component: CreatePilarComponent},
-  {path: 'update-pilar/:id', component: UpdatePilarComponent},
-  {path: 'elemento-list', component: ElementoListComponent},
-  {path: 'create-elemento', component: CreateElementoComponent},
-  {path: 'update-elemento/:id', component: UpdateElementoComponent},
-  {path: 'tipoNota-list', component: TipoNotaListComponent},
-  {path: 'create-tipoNota', component: CreateTipoNotaComponent},
-  {path: 'update-tipoNota/:id', component: UpdateTipoNotaComponent},
+  {path: 'about', component: AboutComponent,canActivate:[AuthGuard]},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'ciclo-list', component: CicloListComponent, canActivate:[AuthGuard]},
+  {path: 'create-ciclo', component: CreateCicloComponent, canActivate:[AuthGuard]},
+  {path: 'update-ciclo/:id', component: UpdateCicloComponent, canActivate:[AuthGuard]},
+  {path: 'componente-list', component: ComponenteListComponent, canActivate:[AuthGuard]},
+  {path: 'create-componente', component: CreateComponenteComponent, canActivate:[AuthGuard]},
+  {path: 'update-componente/:id', component: UpdateComponenteComponent, canActivate:[AuthGuard]},
+  {path: 'pilar-list', component: PilarListComponent, canActivate:[AuthGuard]},
+  {path: 'create-pilar', component: CreatePilarComponent, canActivate:[AuthGuard]},
+  {path: 'update-pilar/:id', component: UpdatePilarComponent, canActivate:[AuthGuard]},
+  {path: 'elemento-list', component: ElementoListComponent, canActivate:[AuthGuard]},
+  {path: 'create-elemento', component: CreateElementoComponent, canActivate:[AuthGuard]},
+  {path: 'update-elemento/:id', component: UpdateElementoComponent, canActivate:[AuthGuard]},
+  {path: 'tipoNota-list', component: TipoNotaListComponent, canActivate:[AuthGuard]},
+  {path: 'create-tipoNota', component: CreateTipoNotaComponent, canActivate:[AuthGuard]},
+  {path: 'update-tipoNota/:id', component: UpdateTipoNotaComponent, canActivate:[AuthGuard]},
 
   //{path: 'ciclo-details/:id', component: CicloDetailsComponent}
   
@@ -56,7 +58,9 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

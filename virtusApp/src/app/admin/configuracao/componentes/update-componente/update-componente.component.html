@@ -1,7 +1,6 @@
 <div class = "col-md-6 offset-md-3">
     <h3> Atualizar Componente </h3>
     <form (ngSubmit) = "onSubmit()">
-
         <div class = "form-group">
             <input class="form-control" type="text" id="id" readonly
                 [(ngModel)] = "componente.idComponente" name ="id">
@@ -39,7 +38,7 @@
             <input type="text"  class="form-control"  id="idStatus"
                 [(ngModel)]= "componente.idStatus" name ="idStatus">
         </div>
-        <button class = "btn btn-success" type="submit">Enviar Update</button>
+        <button routerLink="componente-list" class = "btn btn-success" type="submit">Enviar Update</button>
     </form>
     </div>
     

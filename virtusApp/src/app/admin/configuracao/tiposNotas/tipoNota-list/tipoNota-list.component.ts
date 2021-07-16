@@ -19,10 +19,10 @@ export class TipoNotaListComponent implements OnInit {
 	private router:Router, public matDialog: MatDialog) { }
 
   ngOnInit(): void {
-	this.getTipoNotas();
+	this.getTipoNota();
 	}
 	
-   private getTipoNotas(){
+   private getTipoNota(){
 		this.tipoNotaService.getTipoNotasList().subscribe(data => {
 			this.tipoNotas = data;
 			});
@@ -41,7 +41,7 @@ export class TipoNotaListComponent implements OnInit {
 	deleteTipoNota(id: number){
 		this.tipoNotaService.deleteTipoNota(id).subscribe(data => {
 		console.log('Deletou isso:',data);
-		this.getTipoNotas();
+		this.getTipoNota();
 		})
 	}
 	openModal(id:number) {
