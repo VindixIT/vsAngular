@@ -4,7 +4,7 @@ a{
 }
 
 a:hover, a:active{
-  color: #5350fa;
+  color: #726e6e;
 }
 
 .nav-caption{
@@ -27,7 +27,7 @@ mat-sidenav{
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  color: rgb(207, 27, 27);
+  color: rgb(68, 66, 66);
 
 }
 

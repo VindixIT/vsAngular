@@ -44,14 +44,25 @@ export class CicloListComponent implements OnInit {
 		this.getCiclos();
 		})
 	}
-	openModal(id:number) {
+	openModalUpdate(id:number) {
 		const dialogConfig = new MatDialogConfig();
 		// The user can't close the dialog by clicking outside its body
-		dialogConfig.disableClose = true;
+		dialogConfig.disableClose = false;
 		dialogConfig.id = "modal-component", id;
-		dialogConfig.height = "650px";
+		dialogConfig.height = "800px";
 		dialogConfig.width = "1000px";
 		// https://material.angular.io/components/dialog/overview
 		const modalDialog = this.matDialog.open(UpdateCicloComponent, dialogConfig);
+	  }
+
+	  openModalDelete(id:number) {
+		const dialogConfig = new MatDialogConfig();
+		// The user can't close the dialog by clicking outside its body
+		dialogConfig.disableClose = false;
+		dialogConfig.id = "modal-component", id;
+		dialogConfig.height = "350px";
+		dialogConfig.width = "500px";
+		// https://material.angular.io/components/dialog/overview
+		const modalDialog = this.matDialog.open(deleteCiclo(id));
 	  }
 }

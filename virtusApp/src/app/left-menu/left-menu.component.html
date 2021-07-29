@@ -1,4 +1,9 @@
 <mat-nav-list *ngIf="authService.isAuthenticated">
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onSidenavClose()">View profile</button>
+      <button mat-menu-item (click)="onSidenavClose()">Add contact</button>
+    </mat-menu>
     
     <img class="avatar mat-elevation-z8" src="/assets/images/simpson.jpg" />
     <h4 class="name">Aria</h4>

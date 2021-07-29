@@ -1,60 +1,14 @@
-
-<!-- Menu -->
-<mat-toolbar color="primary" *ngIf="authService.isAuthenticated">
-  <span class="toolbar-filler"></span>
-  <button mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon aria-label="Menu" class="material-icons"
-     sidenav-toggle-button [hidden]="!sidenav.opened">close</mat-icon>
-     <mat-icon aria-label="Menu" class="material-icons"
-     sidenav-toggle-button [hidden]="sidenav.opened">menu</mat-icon>
-  </button>
-
-
-  <h1 class="component-title">
-    <a class="title-link">{{title}}</a>
-  </h1>
-  <!--inicio direito-->
-  <div fxFlex fxLayoutAlign="flex-end center">
-            <mat-card-content position="end">
-              <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
-                Perfil
-              </button>
-            <mat-menu #menu="matMenu">
-              <button  mat-menu-item>
-                <mat-icon>settings</mat-icon>
-                <span>Configuracao</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>person</mat-icon>
-                <span>Minha Conta</span>
-              </button>
-
-              <button mat-menu-item (click)="logout()" class="nav-link">
-              <mat-icon >exit_to_app</mat-icon>
-                Sair do Sistema    
-              </button>
-            </mat-menu>
-          </mat-card-content>    
-
-        </div>
-</mat-toolbar>
-<!-- Sidebar -->
-    
-      <mat-sidenav-container >       
-        <mat-sidenav #sidenav mode="over"  >   
-          <app-left-menu-list (leftmenuClose)="sidenav.close()" ></app-left-menu-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-          <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-          <main>
-            <router-outlet></router-outlet>  
-          </main>
-        </mat-sidenav-content>
-        
-      </mat-sidenav-container>
-
-    
- 
-<!-- body-row END -->
-
-<!-- Fim Menu-->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode ="over" *ngIf="authService.isAuthenticated" >   
+    <app-left-menu-list (leftmenuClose)="sidenav.close()" ></app-left-menu-list>
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+      <div class="content mat-elevation-z8">          
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -33,9 +33,13 @@
               <mat-icon>update</mat-icon>
             </button>
             <mat-divider></mat-divider>
-            <button mat-menu-item (click) ="deleteCiclo(ciclo.idCiclo)">Apagar
+            
+            <button mat-menu-item (click) ="openModalDelete(ciclo.idCiclo)">Apagar
               <mat-icon>delete</mat-icon>
-            </button></mat-menu>
+            </button>
+           
+ 
+          </mat-menu>
       </td>
 
     	<!-- <button mat-menu-item (click) = "openModal(ciclo.id)" >

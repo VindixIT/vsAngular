@@ -6,6 +6,7 @@ import {MatListModule} from '@angular/material/list'
 import {MatCardModule} from '@angular/material/card'
 import {MatButtonModule} from '@angular/material/button'
 import {MatTableModule} from '@angular/material/table'
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
@@ -17,6 +18,8 @@ import {MatTableModule} from '@angular/material/table'
     MatCardModule,
     MatButtonModule,
     MatTableModule,
+    CommonModule,
+    
   ],
   exports: [
     MatSidenavModule,

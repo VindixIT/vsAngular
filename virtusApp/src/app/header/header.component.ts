@@ -8,8 +8,9 @@ import { MatSidenav } from '@angular/material/sidenav';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
 
+export class HeaderComponent implements OnInit {
+  title = 'virtusApp [Local ver 1.3.0]';  
   @ViewChild(MatSidenav)
   sidenav!:MatSidenav;
 

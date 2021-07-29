@@ -52,7 +52,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CdkTableModule} from '@angular/cdk/table';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { HeaderComponent } from './header/header.component';
-
+import { DialogConfirmDeleteComponent } from './dialog/dialog-confirm-delete/dialog-confirm-delete.component';
 
 
 @NgModule({
@@ -85,9 +85,9 @@ import { HeaderComponent } from './header/header.component';
     AboutComponent,
     LeftMenuComponent,
     HeaderComponent,
-        
-    
+    DialogConfirmDeleteComponent,        
   ],
+
   imports: [
     RouterModule.forChild(routes),
     BrowserModule,
