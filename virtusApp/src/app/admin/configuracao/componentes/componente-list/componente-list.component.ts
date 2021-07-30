@@ -4,6 +4,8 @@ import { Componente } from '../componente';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateComponenteComponent } from '../update-componente/update-componente.component';
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-componente-list',
@@ -16,7 +18,10 @@ export class ComponenteListComponent implements OnInit {
 	componentes!: Componente[] 
 	
   constructor(private componenteService: ComponenteService,  
-	private router:Router, public matDialog: MatDialog) { }
+	private router:Router, public matDialog: MatDialog,
+	private dialogService:DialogService,
+	private notificationService:NotificationService) { }
+	
 
   ngOnInit(): void {
 	this.getComponentes();
@@ -39,11 +44,18 @@ export class ComponenteListComponent implements OnInit {
 	}
 
 	deleteComponente(id: number){
-		this.componenteService.deleteComponente(id).subscribe(data => {
-		console.log('Deletou isso:',data);
-		this.getComponentes();
-		})
-	}
+		this.dialogService.openConfirmDialog('Tem certeza que deseja apagar o Componente??')
+		.afterClosed().subscribe(res =>{
+			if (res){
+				console.log('!');
+				this.componenteService.deleteComponente(id).subscribe(data => {
+					console.log('Deletou isso:',data);
+		this.getComponentes();this.notificationService.warn('Componente deletado com sucesso!')
+	})
+}
+});
+
+}
 	openModal(id:number) {
 		const dialogConfig = new MatDialogConfig();
 		// The user can't close the dialog by clicking outside its body

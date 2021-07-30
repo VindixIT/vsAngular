@@ -4,6 +4,8 @@ import { TipoNota } from '../tipoNota';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateTipoNotaComponent } from '../update-tipoNota/update-tipoNota.component';
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-tipoNota-list',
@@ -16,7 +18,9 @@ export class TipoNotaListComponent implements OnInit {
 	tipoNotas!: TipoNota[] 
 	
   constructor(private tipoNotaService: TipoNotaService,  
-	private router:Router, public matDialog: MatDialog) { }
+	private router:Router, public matDialog: MatDialog,
+	private dialogService:DialogService,
+	private notificationService:NotificationService) { }
 
   ngOnInit(): void {
 	this.getTipoNota();
@@ -39,11 +43,19 @@ export class TipoNotaListComponent implements OnInit {
 	}
 
 	deleteTipoNota(id: number){
-		this.tipoNotaService.deleteTipoNota(id).subscribe(data => {
-		console.log('Deletou isso:',data);
-		this.getTipoNota();
-		})
-	}
+		this.dialogService.openConfirmDialog('Tem certeza que deseja apagar o Registro??')
+		.afterClosed().subscribe(res =>{
+			if (res){
+				console.log('!');
+				this.tipoNotaService.deleteTipoNota(id).subscribe(data => {
+					console.log('Deletou isso:',data);
+				this.getTipoNota();
+				this.notificationService.warn('Ciclo deletado com sucesso!')
+			})
+		}
+	});
+	
+}
 	openModal(id:number) {
 		const dialogConfig = new MatDialogConfig();
 		// The user can't close the dialog by clicking outside its body

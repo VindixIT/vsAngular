@@ -4,6 +4,9 @@ import { Elemento } from '../elemento';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateElementoComponent } from '../update-elemento/update-elemento.component';
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
+
 
 @Component({
   selector: 'app-elemento-list',
@@ -16,7 +19,9 @@ export class ElementoListComponent implements OnInit {
 	elementos!: Elemento[] 
 	
   constructor(private elementoService: ElementoService,  
-	private router:Router, public matDialog: MatDialog) { }
+	private router:Router, public matDialog: MatDialog,
+	private dialogService:DialogService,
+	private notificationService:NotificationService) { }
 
   ngOnInit(): void {
 	this.getElementos();
@@ -39,11 +44,18 @@ export class ElementoListComponent implements OnInit {
 	}
 
 	deleteElemento(id: number){
-		this.elementoService.deleteElemento(id).subscribe(data => {
-		console.log('Deletou isso:',data);
-		this.getElementos();
-		})
-	}
+		this.dialogService.openConfirmDialog('Tem certeza que deseja apagar o Registro??')
+		.afterClosed().subscribe(res =>{
+			if (res){
+				console.log('!');
+				this.elementoService.deleteElemento(id).subscribe(data => {
+				this.getElementos();
+				this.notificationService.warn('Elemento deletado com sucesso!')
+			})
+		}
+	});
+	
+}
 	openModal(id:number) {
 		const dialogConfig = new MatDialogConfig();
 		// The user can't close the dialog by clicking outside its body

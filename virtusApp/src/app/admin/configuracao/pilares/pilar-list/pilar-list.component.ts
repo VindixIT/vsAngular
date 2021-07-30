@@ -4,6 +4,9 @@ import { Pilar } from '../pilar';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdatePilarComponent } from '../update-pilar/update-pilar.component';
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
+
 
 @Component({
   selector: 'app-pilar-list',
@@ -16,7 +19,9 @@ export class PilarListComponent implements OnInit {
 	pilares!: Pilar[] 
 	
   constructor(private pilarService: PilarService,  
-	private router:Router, public matDialog: MatDialog) { }
+	private router:Router, public matDialog: MatDialog,
+	private dialogService:DialogService,
+	private notificationService:NotificationService) { }
 
   ngOnInit(): void {
 	this.getPilares();
@@ -39,11 +44,18 @@ export class PilarListComponent implements OnInit {
 	}
 
 	deletePilar(id: number){
-		this.pilarService.deletePilar(id).subscribe(data => {
-		console.log('Deletou isso:',data);
-		this.getPilares();
-		})
-	}
+		this.dialogService.openConfirmDialog('Tem certeza que deseja apagar o Registro??')
+		.afterClosed().subscribe(res =>{
+			if (res){
+				console.log('!');
+				this.pilarService.deletePilar(id).subscribe(data => {
+				this.getPilares();
+				this.notificationService.warn('Ciclo deletado com sucesso!')
+			})
+		}
+	});
+	
+}
 	openModal(id:number) {
 		const dialogConfig = new MatDialogConfig();
 		// The user can't close the dialog by clicking outside its body

@@ -118,6 +118,7 @@ import { DialogConfirmDeleteComponent } from './dialog/dialog-confirm-delete/dia
     UpdatePilarComponent,
     UpdateElementoComponent,
     UpdateTipoNotaComponent,
+    DialogConfirmDeleteComponent
 
   ]
 })
